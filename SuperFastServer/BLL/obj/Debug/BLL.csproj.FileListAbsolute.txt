@@ -1,0 +1,5 @@
+D:\Users\ebg\Documents\School\פרויקט סיום\server 12-07-21\SuperFastServer\BLL\bin\Debug\BLL.dll
+D:\Users\ebg\Documents\School\פרויקט סיום\server 12-07-21\SuperFastServer\BLL\bin\Debug\BLL.pdb
+D:\Users\ebg\Documents\School\פרויקט סיום\server 12-07-21\SuperFastServer\BLL\obj\Debug\BLL.csproj.CoreCompileInputs.cache
+D:\Users\ebg\Documents\School\פרויקט סיום\server 12-07-21\SuperFastServer\BLL\obj\Debug\BLL.dll
+D:\Users\ebg\Documents\School\פרויקט סיום\server 12-07-21\SuperFastServer\BLL\obj\Debug\BLL.pdb

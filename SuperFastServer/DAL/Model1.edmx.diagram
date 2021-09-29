@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="adb3253a14554663ac11b44b9b2bd23e" Name="Diagram1" ZoomLevel="94">
+        <EntityTypeShape EntityType="Super_FastModel.Customer_tbl" Width="1.5" PointX="3" PointY="2" IsExpanded="true" />
+        <EntityTypeShape EntityType="Super_FastModel.Information_tbl" Width="1.5" PointX="5.25" PointY="4.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="Super_FastModel.Manager_tbl" Width="1.5" PointX="0.75" PointY="4.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Super_FastModel.Messengers_tbl" Width="1.5" PointX="3" PointY="6.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Super_FastModel.Order_tbl" Width="1.5" PointX="5.25" PointY="7.625" IsExpanded="true" />
+        <AssociationConnector Association="Super_FastModel.FK__Customer___Manag__2C3393D0" ManuallyRouted="false" />
+        <AssociationConnector Association="Super_FastModel.FK__Informati__Cust___2D27B809" ManuallyRouted="false" />
+        <AssociationConnector Association="Super_FastModel.FK__Order_tbl__Cust___300424B4" ManuallyRouted="false" />
+        <AssociationConnector Association="Super_FastModel.FK__Informati__Messe__2E1BDC42" ManuallyRouted="false" />
+        <AssociationConnector Association="Super_FastModel.FK__Messenger__Manag__2F10007B" ManuallyRouted="false" />
+        <AssociationConnector Association="Super_FastModel.FK__Order_tbl__Manag__30F848ED" ManuallyRouted="false" />
+        <AssociationConnector Association="Super_FastModel.FK__Order_tbl__Messe__31EC6D26" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

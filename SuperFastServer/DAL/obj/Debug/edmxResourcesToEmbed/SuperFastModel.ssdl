@@ -1,0 +1,184 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Super_Fast_12_07Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Customer_tbl">
+    <Key>
+      <PropertyRef Name="Cust_Id" />
+    </Key>
+    <Property Name="Cust_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Manager_Id" Type="int" Nullable="false" />
+    <Property Name="Cust_name" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="Cust_phone" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="Cust_phone2" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="City" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="Street" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="House_num" Type="int" Nullable="false" />
+    <Property Name="Apartment_num" Type="int" Nullable="false" />
+    <Property Name="Floor" Type="int" Nullable="false" />
+    <Property Name="Sent" Type="bit" Nullable="false" />
+    <Property Name="Lat" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="Lan" Type="nvarchar" MaxLength="20" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Information_tbl">
+    <Key>
+      <PropertyRef Name="Messenger_Id" />
+      <PropertyRef Name="Cust_Id" />
+      <PropertyRef Name="Date" />
+    </Key>
+    <Property Name="Messenger_Id" Type="int" Nullable="false" />
+    <Property Name="Cust_Id" Type="int" Nullable="false" />
+    <Property Name="Date" Type="date" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Manager_tbl">
+    <Key>
+      <PropertyRef Name="Manager_Id" />
+    </Key>
+    <Property Name="Manager_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="First_name" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="Last_name" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="Password" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="Manager_phone" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="Email" Type="nvarchar" MaxLength="30" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Messengers_tbl">
+    <Key>
+      <PropertyRef Name="Messenger_Id" />
+    </Key>
+    <Property Name="Messenger_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Messenger_name" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="Messenger_phone" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="Messenger_Email" Type="nvarchar" MaxLength="30" Nullable="false" />
+    <Property Name="Password" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="Manager_Id" Type="int" Nullable="false" />
+    <Property Name="MaxAmountPackages" Type="int" Nullable="false" />
+    <Property Name="IsAvailable" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Order_tbl">
+    <Key>
+      <PropertyRef Name="Order_Id" />
+    </Key>
+    <Property Name="Order_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Manager_Id" Type="int" Nullable="false" />
+    <Property Name="Cust_Id" Type="int" Nullable="false" />
+    <Property Name="Amount_packages" Type="int" Nullable="false" />
+    <Property Name="Messenger_Id" Type="int" />
+  </EntityType>
+  <Association Name="FK__Customer___Manag__267ABA7A">
+    <End Role="Manager_tbl" Type="Self.Manager_tbl" Multiplicity="1" />
+    <End Role="Customer_tbl" Type="Self.Customer_tbl" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Manager_tbl">
+        <PropertyRef Name="Manager_Id" />
+      </Principal>
+      <Dependent Role="Customer_tbl">
+        <PropertyRef Name="Manager_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Informati__Cust___37A5467C">
+    <End Role="Customer_tbl" Type="Self.Customer_tbl" Multiplicity="1" />
+    <End Role="Information_tbl" Type="Self.Information_tbl" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Customer_tbl">
+        <PropertyRef Name="Cust_Id" />
+      </Principal>
+      <Dependent Role="Information_tbl">
+        <PropertyRef Name="Cust_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Informati__Messe__36B12243">
+    <End Role="Messengers_tbl" Type="Self.Messengers_tbl" Multiplicity="1" />
+    <End Role="Information_tbl" Type="Self.Information_tbl" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Messengers_tbl">
+        <PropertyRef Name="Messenger_Id" />
+      </Principal>
+      <Dependent Role="Information_tbl">
+        <PropertyRef Name="Messenger_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Messenger__Manag__29572725">
+    <End Role="Manager_tbl" Type="Self.Manager_tbl" Multiplicity="1" />
+    <End Role="Messengers_tbl" Type="Self.Messengers_tbl" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Manager_tbl">
+        <PropertyRef Name="Manager_Id" />
+      </Principal>
+      <Dependent Role="Messengers_tbl">
+        <PropertyRef Name="Manager_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Order_tbl__Cust___3B75D760">
+    <End Role="Customer_tbl" Type="Self.Customer_tbl" Multiplicity="1" />
+    <End Role="Order_tbl" Type="Self.Order_tbl" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Customer_tbl">
+        <PropertyRef Name="Cust_Id" />
+      </Principal>
+      <Dependent Role="Order_tbl">
+        <PropertyRef Name="Cust_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Order_tbl__Manag__3A81B327">
+    <End Role="Manager_tbl" Type="Self.Manager_tbl" Multiplicity="1" />
+    <End Role="Order_tbl" Type="Self.Order_tbl" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Manager_tbl">
+        <PropertyRef Name="Manager_Id" />
+      </Principal>
+      <Dependent Role="Order_tbl">
+        <PropertyRef Name="Manager_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Order_tbl__Messe__3C69FB99">
+    <End Role="Messengers_tbl" Type="Self.Messengers_tbl" Multiplicity="0..1" />
+    <End Role="Order_tbl" Type="Self.Order_tbl" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Messengers_tbl">
+        <PropertyRef Name="Messenger_Id" />
+      </Principal>
+      <Dependent Role="Order_tbl">
+        <PropertyRef Name="Messenger_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="Super_Fast_12_07ModelStoreContainer">
+    <EntitySet Name="Customer_tbl" EntityType="Self.Customer_tbl" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Information_tbl" EntityType="Self.Information_tbl" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Manager_tbl" EntityType="Self.Manager_tbl" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Messengers_tbl" EntityType="Self.Messengers_tbl" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Order_tbl" EntityType="Self.Order_tbl" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__Customer___Manag__267ABA7A" Association="Self.FK__Customer___Manag__267ABA7A">
+      <End Role="Manager_tbl" EntitySet="Manager_tbl" />
+      <End Role="Customer_tbl" EntitySet="Customer_tbl" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Informati__Cust___37A5467C" Association="Self.FK__Informati__Cust___37A5467C">
+      <End Role="Customer_tbl" EntitySet="Customer_tbl" />
+      <End Role="Information_tbl" EntitySet="Information_tbl" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Informati__Messe__36B12243" Association="Self.FK__Informati__Messe__36B12243">
+      <End Role="Messengers_tbl" EntitySet="Messengers_tbl" />
+      <End Role="Information_tbl" EntitySet="Information_tbl" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Messenger__Manag__29572725" Association="Self.FK__Messenger__Manag__29572725">
+      <End Role="Manager_tbl" EntitySet="Manager_tbl" />
+      <End Role="Messengers_tbl" EntitySet="Messengers_tbl" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Order_tbl__Cust___3B75D760" Association="Self.FK__Order_tbl__Cust___3B75D760">
+      <End Role="Customer_tbl" EntitySet="Customer_tbl" />
+      <End Role="Order_tbl" EntitySet="Order_tbl" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Order_tbl__Manag__3A81B327" Association="Self.FK__Order_tbl__Manag__3A81B327">
+      <End Role="Manager_tbl" EntitySet="Manager_tbl" />
+      <End Role="Order_tbl" EntitySet="Order_tbl" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Order_tbl__Messe__3C69FB99" Association="Self.FK__Order_tbl__Messe__3C69FB99">
+      <End Role="Messengers_tbl" EntitySet="Messengers_tbl" />
+      <End Role="Order_tbl" EntitySet="Order_tbl" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
